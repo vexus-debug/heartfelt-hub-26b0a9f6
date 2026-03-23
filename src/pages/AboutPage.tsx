@@ -190,7 +190,7 @@ const AboutPage = () => {
                   <img src={dentalTeam} alt="Smile 365 Star dental team" className="rounded-2xl w-full h-72 md:h-96 object-cover" />
                 </div>
                 <div className="col-span-2 flex flex-col gap-3">
-                  <img src={dentistImg} alt="Our dentists" className="rounded-2xl w-full h-[calc(50%-0.375rem)] object-cover" />
+                  <img src={receptionDesk} alt="Our dentists" className="rounded-2xl w-full h-[calc(50%-0.375rem)] object-cover" />
                   <img src={dentistAtWork} alt="Specialist performing a procedure" className="rounded-2xl w-full h-[calc(50%-0.375rem)] object-cover" />
                 </div>
               </div>
