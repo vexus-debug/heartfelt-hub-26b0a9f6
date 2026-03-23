@@ -39,8 +39,10 @@ const GalleryPage = () => {
     <div className="min-h-screen">
       <Navbar />
       <PageHero
-        title="Our Gallery"
-        subtitle="Take a virtual tour of our clinics, meet our team, and see the quality of care we provide every day."
+        title="Our"
+        highlight="Gallery"
+        description="Take a virtual tour of our clinics, meet our team, and see the quality of care we provide every day."
+        breadcrumb="Gallery"
       />
 
       <section className="py-16 bg-background">
