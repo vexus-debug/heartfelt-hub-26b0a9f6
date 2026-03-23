@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, ArrowRight } from "lucide-react";
+import { MapPin, Phone, Clock, ArrowRight, Navigation } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
@@ -9,24 +9,29 @@ const branches = [
     tag: "Headquarters",
     address: "61 Stadium Road, by Mummy B Junction, Beside Golden Tulip Hotel, Port Harcourt, Rivers State",
     phone: "+234 816 525 7737",
+    emoji: "🏛️",
   },
   {
     name: "Aba",
     tag: "Branch",
     address: "215 Aba–Owerri Road, By MCC Junction, Aba, Abia State",
     phone: "+234 810 553 6130",
+    emoji: "🏢",
   },
   {
     name: "Owerri",
     tag: "Branch",
     address: "88 Wetheral Road, By MCC Junction, Beside FCMB Bank, Owerri, Imo State",
     phone: "+234 813 282 5366",
+    emoji: "🏥",
   },
 ];
 
 const LocationsSection = () => {
   return (
-    <section className="py-24 bg-card">
+    <section className="py-24 md:py-32 bg-card relative">
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+      
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -50,24 +55,25 @@ const LocationsSection = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="bg-background rounded-2xl p-6 shadow-card border border-border hover:shadow-elevated transition-shadow"
+              transition={{ delay: i * 0.12 }}
+              className="bg-background rounded-2xl border border-border hover:border-primary/20 shadow-card hover:shadow-elevated transition-all duration-300 overflow-hidden group"
             >
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="font-display text-xl font-bold text-foreground">{branch.name}</h3>
-                <span className={`text-xs font-body px-3 py-1 rounded-full ${
-                  branch.tag === "Headquarters" 
-                    ? "bg-primary text-primary-foreground" 
-                    : "bg-secondary text-secondary-foreground"
-                }`}>
-                  {branch.tag}
-                </span>
+              {/* Header strip */}
+              <div className="bg-gradient-hero p-5 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">{branch.emoji}</span>
+                  <div>
+                    <h3 className="font-display text-lg font-bold text-primary-foreground">{branch.name}</h3>
+                    <span className="text-xs font-body text-primary-foreground/70">{branch.tag}</span>
+                  </div>
+                </div>
+                <Navigation className="h-4 w-4 text-gold" />
               </div>
 
-              <div className="space-y-3">
+              <div className="p-6 space-y-4">
                 <div className="flex items-start gap-3">
                   <MapPin className="h-4 w-4 text-primary mt-1 flex-shrink-0" />
-                  <span className="text-sm font-body text-muted-foreground">{branch.address}</span>
+                  <span className="text-sm font-body text-muted-foreground leading-relaxed">{branch.address}</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-primary flex-shrink-0" />
@@ -79,27 +85,32 @@ const LocationsSection = () => {
                   <Clock className="h-4 w-4 text-primary flex-shrink-0" />
                   <span className="text-sm font-body text-muted-foreground">Mon–Sat: 8AM – 6PM</span>
                 </div>
-              </div>
 
-              <a
-                href={`https://wa.me/${branch.phone.replace(/[+\s]/g, '')}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-6 block w-full text-center py-3 rounded-xl bg-primary/10 text-primary font-body font-semibold text-sm hover:bg-primary/20 transition-colors"
-              >
-                Chat on WhatsApp
-              </a>
+                <a
+                  href={`https://wa.me/${branch.phone.replace(/[+\s]/g, '')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block w-full text-center py-3 rounded-xl bg-primary text-primary-foreground font-body font-semibold text-sm hover:bg-primary/90 transition-colors"
+                >
+                  Chat on WhatsApp
+                </a>
+              </div>
             </motion.div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Button variant="outline" asChild>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <Button variant="outline" asChild className="group">
             <Link to="/locations">
-              View All Locations <ArrowRight className="ml-2 h-4 w-4" />
+              View All Locations <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
